@@ -64,7 +64,7 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(metadata["values"]["name"], "Updated")
         self.assertEqual(metadata["values"]["display_version"], "V458752")
         self.assertEqual(metadata["values"]["title_id"], f"{TITLE_ID:016X}")
-        self.assertEqual(metadata["values"]["icon"], str(control / "icon_AmericanEnglish.dat"))
+        self.assertTrue(Path(metadata["values"]["icon"]).samefile(control / "icon_AmericanEnglish.dat"))
         self.assertEqual(metadata["missing"], [])
 
     def test_folder_suggestion_and_snapshot_report_are_not_original_metadata(self):

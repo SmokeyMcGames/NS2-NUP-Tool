@@ -15,8 +15,11 @@ compression, update replacement, layout correction, V0 fallback, cancellation,
 unsafe path rejection, optional listing inclusion, and actual Qt-to-worker flows.
 All committed fixtures generate synthetic data; no game content is included.
 
-A previous local full-container extraction/repack also compared package
-identities, directory paths, sizes, and every payload SHA-256 successfully.
+The 0.3.0 packaged worker also extracted and repacked a local 8.77 GiB container:
+all 3 packages, 53 files, 10,345,166,391 logical bytes, directory paths, package
+identities, and payload SHA-256 values were preserved. Full verification passed;
+the input's size and modification time were unchanged. The smaller compressed
+output retained the same payloads. Temporary copies were removed after checking.
 That private test data and its machine-specific logs are not published here.
 
 These results establish the tested container and app behavior. They do not
