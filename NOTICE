@@ -1,0 +1,39 @@
+NS2 NUP Tool
+Copyright (c) 2026 SmokeyMcGames and NS2 NUP Tool contributors
+
+Original project code, documentation, and generated pixel artwork are licensed
+under GNU General Public License version 3 only (GPL-3.0-only).
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, version 3 of the License.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+A copy of the GNU GPL is included in LICENSE. See https://www.gnu.org/licenses/.
+
+NUP FORMAT CREDIT
+
+NUP format and upstream reference implementation: a55uka and contributors
+https://github.com/a55uka/nup
+Specification/reference revision: 744fb7e30ce3ace787f1839ee3e7f8a010e36c04
+
+Our nup_core package is an original implementation of the published format.
+No upstream implementation code or specification text is included in the
+application or source archive. The reference checkout is used only for optional
+development compatibility testing. We do not assign a license to upstream code.
+
+DEPENDENCIES AND TRADEMARKS
+
+Third-party components retain their own licenses. See THIRD_PARTY_NOTICES.md,
+_internal/licenses, the release's dependency source archives, and docs/RELEASING.md.
+Microsoft runtime components are Windows system/runtime redistributables,
+not relicensed as GPL. Their notices and applicable Windows-only redistribution
+terms are retained in the included Python Windows runtime license.
+
+Nintendo, Nintendo Switch, and Nintendo Switch 2 are trademarks of Nintendo.
+This independent project is not affiliated with, endorsed by, or sponsored by
+Nintendo or the NUP author. No game content, keys, firmware, Nintendo logos, or
+downloaded storefront artwork is included. Test data is generated synthetically.

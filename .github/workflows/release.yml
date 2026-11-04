@@ -1,0 +1,73 @@
+name: Windows release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build and validate release
+    runs-on: windows-2022
+    timeout-minutes: 45
+    env:
+      NUP_REFERENCE_TESTS: '1'
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - name: Set up pinned dependencies and reference tests
+        shell: pwsh
+        run: ./Setup.ps1 -Python python -ReferenceTests
+      - name: Verify corresponding sources and prepare license notices
+        shell: pwsh
+        run: ./.venv/Scripts/python.exe tools/prepare_dependencies.py
+      - name: Test, build, and check the portable app
+        shell: pwsh
+        run: ./Build.ps1
+      - name: Package app, project source, dependency sources, and checksums
+        shell: pwsh
+        run: ./.venv/Scripts/python.exe tools/package_release.py --tag "$env:GITHUB_REF_NAME"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-assets
+          path: release/*
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 3
+
+  publish:
+    name: Publish complete release
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: release-assets
+          path: release
+      - name: Upload all assets, then publish
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_TAG" --verify-tag --draft \
+            --title "NS2 NUP Tool $RELEASE_TAG" \
+            --notes-file release/RELEASE_NOTES.md release/*
+          gh release edit "$RELEASE_TAG" --draft=false --latest

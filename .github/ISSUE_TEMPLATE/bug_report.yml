@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible problem with NS2 NUP Tool.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Use synthetic examples. Do not upload game dumps, keys, firmware, or unredacted personal paths. Report security vulnerabilities privately using SECURITY.md."
+  - type: input
+    id: version
+    attributes:
+      label: App version or commit
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Windows version and display scaling
+      placeholder: "Windows 11 x64, 1920 × 1080, 125% scaling"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the workflow and a redacted folder layout if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs or synthetic reproduction
+      description: Do not attach copyrighted payloads or private data.

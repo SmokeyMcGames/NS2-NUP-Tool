@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/SmokeyMcGames/NS2-NUP-Tool/security/advisories/new
+    about: Report security issues privately, without game files or keys.
+  - name: User guide
+    url: https://github.com/SmokeyMcGames/NS2-NUP-Tool/blob/main/docs/GUIDE.md
+    about: Read the workflow, folder-layout, and troubleshooting details.
